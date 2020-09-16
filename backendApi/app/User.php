@@ -1,14 +1,14 @@
 <?php
 
 namespace App;
-use Tymon\JWTSubject\Contracts\JWTSubject;
-use Illuminate\Notifications\Notifiable;
+
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    // use Notifiable;
 
     /**
      * The attributes that are mass assignable.

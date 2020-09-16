@@ -7,5 +7,9 @@ use App\Http\Controllers\Controller;
 
 class SignOutController extends Controller
 {
-    //
+    public function __invoke()
+    {
+       auth()->logout();
+    }   
+    
 }
