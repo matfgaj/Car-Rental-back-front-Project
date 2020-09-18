@@ -14,7 +14,14 @@ Route::get('cars', 'CarController@index');
 Route::get('car/{id}', 'CarController@show');
 Route::post('car', 'CarController@store');
 Route::put('car', 'CarController@store');
+Route::post('car/{id}/rent', 'CarController@rent');
 Route::delete('car/{id}', 'CarController@destroy');
+
+// Users
+Route::get('user/{id}/cars', 'UserController@show');
+Route::post('user', 'UserController@store');
+Route::put('user', 'UserController@store');
+
 
 
 
