@@ -37,6 +37,7 @@ class CarController extends Controller
         $car->name = $request->input('name');
         $car->brand = $request->input('brand');
         $car->model = $request->input('model');
+        $car->productionyear = $request->input('productionyear');
         $car->description = $request->input('description');
         $car->rented = 0;
         $car->renter = '';
