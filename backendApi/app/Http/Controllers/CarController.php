@@ -30,6 +30,8 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+       
+         
         $car = $request->isMethod('put') ? Car::FindOrfail($request->car_id)
          : new Car;
 
@@ -39,8 +41,9 @@ class CarController extends Controller
         $car->model = $request->input('model');
         $car->productionyear = $request->input('productionyear');
         $car->description = $request->input('description');
-        $car->rented = 0;
-        $car->renter = '';
+        $car->rented = $request->input('rented');
+
+
         if($car->save()){
             
             return new CarResource($car);
@@ -49,7 +52,20 @@ class CarController extends Controller
     }
 
 
+    public function rent(Request $request,$id)
+    {
+        $car = Car::FindOrfail($id);
 
+        $car->id = $id;
+        $car->rented = 1;
+        if($car->save()){
+            
+            return new CarResource($car);
+        }
+
+    }
+
+    
     /**
      * Display the specified resource.
      *
