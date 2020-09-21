@@ -3,10 +3,18 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: "Home",
   components: {},
+  data() {
+    return {
+      initialized: false,
+    };
+  },
+  created() {
+    this.fetchData().then(() => {
+      this.initialized = true;
+    });
+  },
 };
 </script>
