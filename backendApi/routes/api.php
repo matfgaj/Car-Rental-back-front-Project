@@ -20,7 +20,7 @@ Route::delete('car/{id}', 'CarController@destroy');
 // Users
 Route::get('user/{id}/cars', 'UserController@show');
 Route::post('register', 'UserController@store');
-Route::put('user', 'UserController@store');
+Route::put('user', 'UserController@update');
 
 
 
