@@ -25,9 +25,14 @@ export default {
   },
   actions: {
     async signIn({ dispatch }, credentials) {
-      let response = await axios.post("auth/signin", credentials);
-
-      return dispatch("attempt", response.data.token);
+      let response = await axios.post("auth/signin", credentials).catch((e) => {
+        if (!e.response || e.response.status === 401) {
+          return alert("invalid data");
+        }
+      });
+      if (response) {
+        return dispatch("attempt", response.data.token);
+      }
     },
 
     async attempt({ commit, state }, token) {
@@ -54,6 +59,17 @@ export default {
         commit("SET_TOKEN", null);
         commit("SET_USER", null);
       });
+    },
+    async register(_, passedForm) {
+      let form = {
+        name: `${passedForm.firstname} ${passedForm.lastname}`,
+        email: `${passedForm.email}`,
+        password: `${passedForm.password}`,
+      };
+      const response = await axios.post("register", form);
+      if (response) {
+        return alert("gratulacje udało Ci się założyć konto");
+      }
     },
   },
 };
