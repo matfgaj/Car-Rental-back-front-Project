@@ -19,6 +19,15 @@
         <span>sign in </span>
         <v-icon small>mdi-login</v-icon>
       </v-btn>
+      <v-btn
+        v-if="!authenticated"
+        :to="{ name: 'register' }"
+        class="text-uppercase black--text mx-4"
+        small
+      >
+        <span>register</span>
+        <v-icon small>mdi-login</v-icon>
+      </v-btn>
       <template v-if="authenticated">
         <v-btn
           :to="{ name: 'profile' }"
