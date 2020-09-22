@@ -4,9 +4,16 @@
       <v-col cols="12" sm="8" md="4">
         <v-card class="elevation-12">
           <v-toolbar color="grey" dark flat>
-            <v-toolbar-title>Welcome</v-toolbar-title>
+            <v-toolbar-title>Sign In</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-icon @click="home">mdi-close</v-icon>
+            <v-icon
+              @click="
+                home().then(() => {
+                  clear();
+                })
+              "
+              >mdi-close</v-icon
+            >
           </v-toolbar>
           <v-card-text>
             <v-form>
@@ -65,6 +72,10 @@ export default {
     },
     home() {
       this.$router.replace({ path: "/" });
+    },
+    clear() {
+      this.form.email = "";
+      this.form.password = "";
     },
   },
 };
