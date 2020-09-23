@@ -14,9 +14,16 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $cars = Car::paginate(15);
+    public function index(Request $request){
+        
+        $searchbrand = $request->get('brand');
+        $searchmodel = $request->get('model');
+        $searchproductionyear = $request->get('productionyear');
+
+        $cars = Car::where('brand', 'like', '%'.$searchbrand.'%')
+                   ->where('model', 'like', '%'.$searchmodel.'%')
+                   ->where('productionyear', 'like', '%'.$searchproductionyear.'%')
+                   ->get();
 
         return CarResource::collection($cars);
 
