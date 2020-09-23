@@ -9,8 +9,8 @@
           ></v-text-field>
         </v-flex>
         <v-row justify="center">
-          <v-col cols="6" md="2">
-            <v-btn @click="test">
+          <v-col cols="6" sm="1">
+            <v-btn @click="getCarsList(filters)">
               <v-icon class="mx-4" large> mdi-magnify</v-icon>
             </v-btn>
           </v-col>
@@ -19,7 +19,7 @@
     </v-container>
 
     <v-layout wrap justify-space-around>
-      <v-flex v-for="car in carsList" :key="car.id" xs12 sm6 md4>
+      <v-flex v-for="car in carsList" :key="car.id" xs6 sm4 md2>
         <v-card>
           <v-img
             src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
@@ -43,50 +43,58 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <v-flex>
+      <Pagination
+        v-if="initialized"
+        store="cars"
+        collection="pageInfo"
+      ></Pagination>
+    </v-flex>
   </v-container>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-import axios from "axios";
+import Pagination from "@/components/Pagination";
 
 export default {
+  components: {
+    Pagination,
+  },
   name: "Home",
   data() {
     return {
-      initialized: false,
-      carsList: null,
-      paginationLinks: null,
-      displayedPage: null,
       filters: [
-        { name: "name", label: "car name", value: "" },
         { name: "brand", label: "car brand", value: "" },
+        { name: "model", label: "car model", value: "" },
         { name: "year", label: "production year", value: "" },
       ],
     };
   },
-  methods: {
-    ...mapActions({
-      signIn: "home/getCarsList",
-    }),
-    test() {
-      console.log(this.paginationLinks);
+  computed: {
+    carsList: {
+      get() {
+        return this.$store.state.cars.pageInfo.data;
+      },
     },
-
-    async getFirtsCarsList() {
-      if (!this.carsList) {
-        let response = await axios.get("cars?page=1");
-        if (response) {
-          this.carsList = response.data.data;
-          this.paginationLinks = response.data.links;
-        }
-      }
+    initialized: {
+      get() {
+        return this.$store.state.cars.initialized;
+      },
     },
   },
+  methods: {
+    ...mapActions({ GetPageData: "cars/GetPageData" }),
+
+    async getCarsList() {
+      this.GetPageData(this.filters);
+    },
+  },
+
   created() {
-    this.getFirtsCarsList().then(() => {
-      this.initialized = true;
-    });
+    if (!this.carsList) {
+      this.getCarsList();
+    }
   },
 };
 </script>
