@@ -15,9 +15,10 @@ class UserController extends Controller
          $user->id = $request->input('user_id');
          $user->name = $request->input('name');
          $user->email = $request->input('email');
-         $user->password = $request->input('password');
+         $user->password = bcrypt($request->input('password'));
          $user->role = 'user';
          $user->cars = '';
+         $user->history = '';
          $user->email_verified_at = now();
 
          if($user->save()){
@@ -45,8 +46,8 @@ class UserController extends Controller
           if ($request->input('cars')) {
             $user->cars = $request->input('cars');
           }
-          if ($request->input('previouscars')) {
-            $user->previouscars = $request->input('previouscars');
+          if ($request->input('history')) {
+            $user->history = $request->input('history');
           }
          
         if($user->save()){
