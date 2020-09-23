@@ -21,6 +21,10 @@ class MeController extends Controller
             'email' => $user->email,
             'name' => $user->name,
             'role' => $user->role,
+            'cars' => $user->cars,
+            'history' => $user->history,
+
+
         ]);
 
     }   
