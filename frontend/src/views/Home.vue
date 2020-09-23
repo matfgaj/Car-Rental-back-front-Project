@@ -1,5 +1,23 @@
 <template>
   <v-container fluid grid-list-xl>
+    <v-container class="cont-2">
+      <v-layout row wrap>
+        <v-flex v-for="filter in filters" :key="filter.name" xs12 sm4>
+          <v-text-field
+            v-model="filter.value"
+            v-bind:label="filter.label"
+          ></v-text-field>
+        </v-flex>
+        <v-row justify="center">
+          <v-col cols="6" md="2">
+            <v-btn @click="test">
+              <v-icon class="mx-4" large> mdi-magnify</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-layout>
+    </v-container>
+
     <v-layout wrap justify-space-around>
       <v-flex v-for="car in carsList" :key="car.id" xs12 sm6 md4>
         <v-card>
@@ -40,20 +58,27 @@ export default {
       carsList: null,
       paginationLinks: null,
       displayedPage: null,
+      filters: [
+        { name: "name", label: "car name", value: "" },
+        { name: "brand", label: "car brand", value: "" },
+        { name: "year", label: "production year", value: "" },
+      ],
     };
   },
   methods: {
     ...mapActions({
       signIn: "home/getCarsList",
     }),
+    test() {
+      console.log(this.paginationLinks);
+    },
+
     async getFirtsCarsList() {
       if (!this.carsList) {
         let response = await axios.get("cars?page=1");
         if (response) {
           this.carsList = response.data.data;
-          console.log(this.carsList);
           this.paginationLinks = response.data.links;
-          console.log(this.paginationLinks);
         }
       }
     },
