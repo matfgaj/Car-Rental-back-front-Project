@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "signin",
   components: {
@@ -59,6 +59,11 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters({
+      authenticated: "auth/authenticated",
+    }),
+  },
   methods: {
     ...mapActions({
       signIn: "auth/signIn",
@@ -66,7 +71,7 @@ export default {
     submit() {
       this.signIn(this.form).then(() => {
         this.$router.replace({
-          name: "profile",
+          name: `${this.authenticated ? "profile" : "Home"}`,
         });
       });
     },
