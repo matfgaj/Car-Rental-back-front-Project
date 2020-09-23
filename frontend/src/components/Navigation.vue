@@ -6,7 +6,8 @@
         class="text-uppercase black--text mainName"
       >
         <span class="font-weight-light white--text">Car</span>
-        <span>Rent</span>
+        <span class="gray" s>Rent</span>
+        <v-icon x-large>mdi-car</v-icon>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -72,8 +73,11 @@ export default {
   },
 };
 </script>
-<style lang="css">
+<style lang="scss">
 .mainName:hover {
   cursor: pointer;
+  *:hover {
+    color: orange;
+  }
 }
 </style>
