@@ -21,6 +21,8 @@ class Car extends JsonResource
             'model' => $this->model,
             'description' => $this->description,
             'rented' => $this->rented,
+            'productionyear' => $this->productionyear,
+
 
         ];
     }
