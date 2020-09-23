@@ -23,7 +23,7 @@ class CarController extends Controller
         $cars = Car::where('brand', 'like', '%'.$searchbrand.'%')
                    ->where('model', 'like', '%'.$searchmodel.'%')
                    ->where('productionyear', 'like', '%'.$searchproductionyear.'%')
-                   ->get();
+                   ->paginate(12);
 
         return CarResource::collection($cars);
 
