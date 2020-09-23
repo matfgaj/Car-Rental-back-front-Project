@@ -6,7 +6,7 @@
           <v-toolbar color="grey" dark flat>
             <v-toolbar-title>Welcome</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-icon @click="redirect('home')">mdi-close</v-icon>
+            <v-icon @click="redirect('')">mdi-close</v-icon>
           </v-toolbar>
           <v-card-text>
             <v-form v-model="valid" :lazy-validation="lazy"
