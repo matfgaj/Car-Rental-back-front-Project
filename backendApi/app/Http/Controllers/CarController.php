@@ -16,13 +16,23 @@ class CarController extends Controller
      */
     public function index(Request $request){
         
+
+        $cars = Car::paginate(100);
+
+        return CarResource::collection($cars);
+
+    }
+    
+    public function available(Request $request){
+        
         $searchbrand = $request->get('brand');
         $searchmodel = $request->get('model');
         $searchproductionyear = $request->get('productionyear');
 
         $cars = Car::where('brand', 'like', '%'.$searchbrand.'%')
                    ->where('model', 'like', '%'.$searchmodel.'%')
-                   ->where('productionyear', 'like', '%'.$searchproductionyear.'%')
+                   ->where('productionyear', 'like', '%'.$searchproductionyear.'%')              
+                   ->where('rented', 'like', '0')
                    ->paginate(12);
 
         return CarResource::collection($cars);
@@ -42,13 +52,33 @@ class CarController extends Controller
         $car = $request->isMethod('put') ? Car::FindOrfail($request->car_id)
          : new Car;
 
-        $car->id = $request->input('car_id');
-        $car->name = $request->input('name');
-        $car->brand = $request->input('brand');
-        $car->model = $request->input('model');
-        $car->productionyear = $request->input('productionyear');
-        $car->description = $request->input('description');
-        $car->rented = $request->input('rented');
+          if ($request->input('car_id'));
+          {
+            $car->id = $request->input('car_id');
+          }  if ($request->input('name'));
+          {
+             $car->name = $request->input('name');
+
+          } if ($request->input('brand'));
+          {
+            $car->brand = $request->input('brand');
+
+          } if ($request->input('model'));
+          {
+            $car->model = $request->input('model');
+
+          } if ($request->input('productionyear'));
+          {
+            $car->productionyear = $request->input('productionyear');
+
+          } if ($request->input('description'));
+          {
+            $car->description = $request->input('description');
+
+          } if ($request->input('rented'));
+          {
+            $car->rented = $request->input('rented');
+        }
 
 
         if($car->save()){
