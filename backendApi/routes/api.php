@@ -11,6 +11,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function (){
 });
 // Cars routes
 Route::get('cars', 'CarController@index');
+Route::get('cars/available', 'CarController@available');
 Route::get('car/{id}', 'CarController@show');
 Route::post('car', 'CarController@store');
 Route::put('car', 'CarController@store');
