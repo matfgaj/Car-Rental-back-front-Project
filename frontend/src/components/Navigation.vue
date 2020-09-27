@@ -63,9 +63,14 @@ export default {
   methods: {
     ...mapActions({
       signOutAction: "auth/signOut",
+      checkAuth: "auth/checkAuth",
     }),
     signOut() {
-      this.signOutAction().then(() => {});
+      this.signOutAction().then(() => {
+        this.$router.replace({ path: "/" });
+        this.checkAuth();
+        this.$router.reload();
+      });
     },
     home() {
       this.$router.replace({ path: "/" });
