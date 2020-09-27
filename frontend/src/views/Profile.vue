@@ -7,7 +7,7 @@
 
 <script>
 import AdminProfile from "@/components/AdminProfile";
-import UserProfile from "@/components/UserProfile";
+import UserProfile from "@/components/User/UserProfile";
 
 export default {
   name: "Profile",
@@ -19,11 +19,6 @@ export default {
     return {
       role: this.$store.state.auth.user.role,
     };
-  },
-  methods: {
-    test() {
-      console.log(this.$store.state.auth.user.role);
-    },
   },
 };
 </script>
