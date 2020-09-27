@@ -71,5 +71,8 @@ export default {
         return alert("gratulacje udało Ci się założyć konto");
       }
     },
+    checkAuth({ dispatch, state }) {
+      dispatch("attempt", state.token);
+    },
   },
 };
