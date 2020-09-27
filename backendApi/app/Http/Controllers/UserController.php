@@ -17,8 +17,8 @@ class UserController extends Controller
          $user->email = $request->input('email');
          $user->password = bcrypt($request->input('password'));
          $user->role = 'user';
-         $user->cars = '';
-         $user->history = '';
+         $user->cars = '[]';
+         $user->history = '[]';
          $user->email_verified_at = now();
 
          if($user->save()){
@@ -31,7 +31,7 @@ class UserController extends Controller
         $user = User::FindOrfail($request->user_id);
     
 
-        if ($request->input('user_id')) {
+          if ($request->input('user_id')) {
             $user->id = $request->input('user_id');
           }
           if ($request->input('name')) {
