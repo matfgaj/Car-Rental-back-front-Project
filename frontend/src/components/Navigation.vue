@@ -69,7 +69,6 @@ export default {
       this.signOutAction().then(() => {
         this.$router.replace({ path: "/" });
         this.checkAuth();
-        this.$router.reload();
       });
     },
     home() {
