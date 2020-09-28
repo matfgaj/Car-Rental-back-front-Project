@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -26,7 +27,7 @@ export default {
   },
   watch: {
     getcarList() {
-      console.log("ja");
+      this.getcarList;
     },
   },
   computed: {
@@ -34,6 +35,7 @@ export default {
   },
   created() {
     this.getcarList;
+    Vue.forceUpdate();
   },
 };
 </script>
