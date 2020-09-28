@@ -68,7 +68,7 @@ export default {
       };
       const response = await axios.post("register", form);
       if (response) {
-        return alert("gratulacje udało Ci się założyć konto");
+        return alert("Congratulations you have created an account.");
       }
     },
     checkAuth({ dispatch, state }) {
