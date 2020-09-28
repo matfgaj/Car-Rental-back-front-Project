@@ -1,47 +1,49 @@
 <template>
-  <v-container class="fill-height container" fluid>
-    <v-row align="center" justify="center">
-      <v-col cols="12" sm="8" md="4">
-        <v-card class="elevation-12">
-          <v-toolbar color="grey" dark flat>
-            <v-toolbar-title>Sign In</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-icon
-              @click="
-                home().then(() => {
-                  clear();
-                })
-              "
-              >mdi-close</v-icon
-            >
-          </v-toolbar>
-          <v-card-text>
-            <v-form>
-              <v-text-field
-                label="email"
-                name="email"
-                prepend-icon="mdi-account"
-                type="text"
-                v-model="form.email"
+  <v-parallax height="100%" src="@/assets/morocco.jpg">
+    <v-container class="fill-height container" fluid>
+      <v-row align="center" justify="center">
+        <v-col cols="12" sm="8" md="4">
+          <v-card class="elevation-12">
+            <v-toolbar color="grey" dark flat>
+              <v-toolbar-title>Sign In</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-icon
+                @click="
+                  home().then(() => {
+                    clear();
+                  })
+                "
+                >mdi-close</v-icon
               >
-              </v-text-field>
-              <v-text-field
-                label="Password"
-                name="password"
-                prepend-icon="mdi-lock"
-                type="text"
-                v-model="form.password"
-              ></v-text-field>
-            </v-form>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn @click="submit" dark color="grey">Login</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+            </v-toolbar>
+            <v-card-text>
+              <v-form>
+                <v-text-field
+                  label="email"
+                  name="email"
+                  prepend-icon="mdi-account"
+                  type="text"
+                  v-model="form.email"
+                >
+                </v-text-field>
+                <v-text-field
+                  label="Password"
+                  name="password"
+                  prepend-icon="mdi-lock"
+                  type="text"
+                  v-model="form.password"
+                ></v-text-field>
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn @click="submit" dark color="grey">Login</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-parallax>
 </template>
 
 <script>
