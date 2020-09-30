@@ -6,7 +6,7 @@
           <v-card class="elevation-12">
             <v-toolbar color="grey" dark flat>
               <v-card-text>
-                Edit only fields you want to change in the selected car
+                Edit only fields you want to change in selected car
               </v-card-text>
               <v-spacer></v-spacer>
               <v-icon
